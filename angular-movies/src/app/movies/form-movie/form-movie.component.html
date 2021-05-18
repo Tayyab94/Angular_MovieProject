@@ -1,0 +1,43 @@
+
+<form (submit)="saveChanges()" [formGroup]="form">
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Title*:</mat-label>
+        <input formControlName="title" matInput />
+        <mat-error>This field is requried</mat-error>
+    </mat-form-field>
+
+    <div class="checkbox-container">
+        <mat-checkbox formControlName="inTheater"> In Theater</mat-checkbox>
+    </div>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Release Date:</mat-label>
+        <input formControlName="releaseDate" matInput [matDatepicker]="picker"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <h3>Select Poster</h3>
+
+    <app-input-img [currentImageSelected]="model?.poster" (onImageSelected)="onImageSelected($event)"></app-input-img>
+
+    <h3>Summary</h3>
+
+    <app-input-markdown [markdownContent]="model?.summary" (changeMarkdown)="changeMarkDown($event)"></app-input-markdown>
+
+    <h4>Select Genras</h4>
+   <app-multiple-selector [selector]="selectedGenras" [nonSelector]="nonselectedGenras"></app-multiple-selector>
+
+   <h4>Select Movie Theater</h4>
+   <app-multiple-selector [selector]="selectedTheater" [nonSelector]="nonselectedTheater"></app-multiple-selector>
+
+    <h3>Select Actor</h3>
+    <app-selected-actor></app-selected-actor>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Save</button>
+        
+        <a mat-flat-button routerLink="/">Cancel</a>
+    </div>
+</form>

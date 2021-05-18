@@ -1,0 +1,8 @@
+<p>edit-genre works!</p>
+
+
+
+
+<app-form-genres *ngIf="model" [model]="this.model" (onSaveChanges)="saveChanges($event)"></app-form-genres>
+
+<mat-spinner *ngIf="!model" class="text=center"></mat-spinner>

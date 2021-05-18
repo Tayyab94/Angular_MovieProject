@@ -1,0 +1,28 @@
+
+<form [formGroup]="form" (submit)="saveChanges()">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Date Of Birth</mat-label>
+        <input formControlName="deteOfBirth" matInput [matDatepicker]="picker" />
+
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <h4>Select Image</h4>
+    <app-input-img [currentImageSelected]="model?.picture" (onImageSelected)="selectedImage($event)"></app-input-img>
+
+    <h3>Bio</h3>
+
+    <app-input-markdown [markdownContent]='model?.biography' (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
+    <div>
+        <button mat-flat-button  color="primary" [disabled]="form.invalid">Submit</button>
+
+        <a mat-flat-button color="warn" routerLink="/actors">Clear</a>
+    </div>
+</form>

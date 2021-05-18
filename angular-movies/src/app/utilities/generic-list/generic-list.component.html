@@ -1,0 +1,25 @@
+<h4>Movies Detail</h4>
+
+<div *ngIf="!list">
+
+    <span #loading>
+        <ng-content select=[loading]></ng-content>
+    </span>
+    
+    <span *ngIf="!loading.innerHTML.trim()">
+        
+        <img class="center" *ngIf="!this.list" src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47s6hwv8wlvbd56a3ccm7tz3n1icg8p3jjo75enish&rid=giphy.gif&ct=g">
+
+    </span>
+    
+</div>
+
+<div *ngIf="this.list?.length ==0" >
+   <h3>Date is loeading</h3>
+</div>
+
+<ng-container *ngIf="list != null && list?.length >0">
+    
+    <ng-content select="[content]"></ng-content>
+
+</ng-container>

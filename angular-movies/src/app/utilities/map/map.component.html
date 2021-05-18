@@ -1,0 +1,11 @@
+<div class="map" style="height: 500px;"
+    leaflet 
+    [leafletOptions]="this.Mapoptions"
+    
+    (leafletMapReady)="onMapReady($event)"
+    [leafletLayers]="this.layers"
+    (leafletClick)="leafletMapClick($event)"
+    >
+</div>
+
+<!-- <button (click)="changeView()">Change view</button> -->
