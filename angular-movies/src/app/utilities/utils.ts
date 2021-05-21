@@ -38,3 +38,28 @@ export function ParseWebAPIsErrors(response:any): string[]
     
     return result;
 }
+
+
+
+export function FormatDateFromData(date: Date)
+{
+    date= new Date();
+
+    const format= new Intl.DateTimeFormat('en',{
+        year:'numeric',
+        month:'2-digit',
+        day: '2-digit'
+    });
+
+    const [
+        {value: month},,
+        {value:day},,
+        {value: year}
+    ]= format.formatToParts(date);
+
+
+    /// return string data
+
+
+    return `${year}-${month}-${day}`;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EditActorModelDTO } from '../actor-model';
+import { ActorsService } from '../actors.service';
 
 @Component({
   selector: 'app-index-actor',
@@ -7,9 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexActorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actorServices: ActorsService) { }
 
+  columnsToDisplay=["name","picture",'actions'];
+  actors: EditActorModelDTO[];
   ngOnInit(): void {
+   
+    this.loadAddActors();
+
+    console.log(this.actors);
+  }
+
+  loadAddActors()
+  {
+    this.actorServices.getAllActors().subscribe((data: EditActorModelDTO[])=>{
+      this.actors= data;
+      console.log(data)
+    });
+  }
+
+
+
+  loadAddActors1()
+  {
+    this.actorServices.getAllActors().subscribe(data=>{
+      this.actors= data;
+      console.log(data)
+    });
+  }
+
+
+  DeleteGenresById(id: number)
+  {
+    this.actorServices.deleteActorById(id).subscribe(()=>{
+      this.loadAddActors();
+    });
   }
 
 }

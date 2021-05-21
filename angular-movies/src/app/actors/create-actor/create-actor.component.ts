@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActorModelDTO } from '../actor-model';
+import { ActorsService } from '../actors.service';
 
 @Component({
   selector: 'app-create-actor',
@@ -8,7 +10,7 @@ import { ActorModelDTO } from '../actor-model';
 })
 export class CreateActorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actorServices: ActorsService, private router: Router) { }
 
   errors: string[]=[];
 
@@ -19,6 +21,10 @@ export class CreateActorComponent implements OnInit {
   SaveForm(actorModel: ActorModelDTO)
   {
     console.log(actorModel);
+
+    this.actorServices.createActorFunction(actorModel).subscribe(()=>{
+      this.router.navigate(["/actors"]);
+    })
   }
 
 }
